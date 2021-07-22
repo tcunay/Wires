@@ -22,11 +22,12 @@ namespace WiresGame.Elements
 
         private void OnEnable()
         {
-            _childControlHeightHandler = new ChildControlHeightHandler(_verticalLayoutGroup, _rectTransform);
+            _childControlHeightHandler = new ChildControlHeightHandler(_verticalLayoutGroup);
         }
 
         public void AddElement(Element element)
         {
+            _childControlHeightHandler.TryEnableChildControlHeight();
             element.SetParentBoard(this);
             _elements.Add(element);
         }
