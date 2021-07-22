@@ -5,7 +5,7 @@ namespace WiresGame.UI
 {
     [RequireComponent(typeof(VerticalLayoutGroup))]
     [RequireComponent(typeof(RectTransform))]
-    public class ElementsScaler : MonoBehaviour
+    public class ChildControlHeightHandler : MonoBehaviour
     {
         private VerticalLayoutGroup _verticalLayoutGroup;
         private RectTransform _rectTransform;
