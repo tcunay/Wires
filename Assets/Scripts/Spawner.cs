@@ -32,7 +32,6 @@ namespace WiresGame
         private void InitColorsListByElements(int elementsCountOnOneBoard, int listsCount, out List<IReadOnlyList<Color>> colorsForBoards)
         {
             colorsForBoards = new List<IReadOnlyList<Color>>();
-
             for (int i = 0; i < listsCount; i++)
             {
                 colorsForBoards.Add(Shuffler<Color>.CreateNewShuffleList(_colorsLibrary.Characteristics, elementsCountOnOneBoard));
