@@ -3,25 +3,18 @@ using UnityEngine.UI;
 
 namespace WiresGame.UI
 {
-    [RequireComponent(typeof(VerticalLayoutGroup))]
-    [RequireComponent(typeof(RectTransform))]
-    public class ChildControlHeightHandler : MonoBehaviour
+    public class ChildControlHeightHandler
     {
         private VerticalLayoutGroup _verticalLayoutGroup;
         private RectTransform _rectTransform;
 
-        private void Awake()
+        public ChildControlHeightHandler(VerticalLayoutGroup verticalLayoutGroup, RectTransform rectTransform)
         {
-            _verticalLayoutGroup = GetComponent<VerticalLayoutGroup>();
-            _rectTransform = GetComponent<RectTransform>();
+            _verticalLayoutGroup = verticalLayoutGroup;
+            _rectTransform = rectTransform;
         }
 
-        private void Update()
-        {
-            TryEnableChildControlHeight();
-        }
-
-        private void TryEnableChildControlHeight()
+        public void TryEnableChildControlHeight()
         {
             if (IsFull())
                 SetChildControlHeight(true);

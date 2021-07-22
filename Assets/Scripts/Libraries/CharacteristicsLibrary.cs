@@ -7,9 +7,6 @@ namespace WiresGame.Libraries
     {
         [SerializeField] private List<T> _characteristics;
 
-        public IReadOnlyList<T> GetCharacteristics()
-        {
-            return _characteristics;
-        }
+        public IReadOnlyList<T> Characteristics => _characteristics;
     }
 }

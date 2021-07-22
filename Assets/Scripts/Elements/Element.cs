@@ -9,7 +9,9 @@ namespace WiresGame.Elements
     public class Element : MonoBehaviour
     {
         private Image _image;
+        private ElementsBoard _parentBoard;
 
+        public ElementsBoard ParentBoard => _parentBoard;
         public Color Color => _image.color;
 
         private void Awake()
@@ -20,6 +22,11 @@ namespace WiresGame.Elements
         public void SetColor(Color color)
         {
             _image.color = color;
+        }
+
+        public void SetParentBoard(ElementsBoard board)
+        {
+            _parentBoard = board;
         }
     }
 }

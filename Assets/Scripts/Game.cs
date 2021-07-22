@@ -8,9 +8,8 @@ namespace WiresGame
     [RequireComponent(typeof(Spawner))]
     public class Game : MonoBehaviour
     {
-        [SerializeField] private Element template;
+        [SerializeField] private int _count;
         private Spawner _spawner;
-        private int _count;
 
         private void Awake()
         {
@@ -35,10 +34,7 @@ namespace WiresGame
 
         private void SpawnElements()
         {
-            for (int i = 0; i < _count; i++)
-            {
-                var a = _spawner.Spawn(template);
-            }
+            _spawner.SpawnElements(_count);
         }
 
         private void OnElementsSpawned()

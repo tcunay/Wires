@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48b74e1b972b394cae0425413f59e15, type: 3}
   m_Name: Colors Library
   m_EditorClassIdentifier: 
-  _characteristics: []
+  _characteristics:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.9928045, g: 1, b: 0, a: 1}
+  - {r: 0.11357415, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.8555436, a: 1}
+  - {r: 0, g: 0.045936108, b: 1, a: 1}
+  - {r: 0.77576685, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.5094004, b: 0, a: 1}
+  - {r: 0, g: 0.693871, b: 1, a: 1}
+  - {r: 0.6415094, g: 0.12582445, b: 0, a: 1}
+  - {r: 0, g: 0.6037736, b: 0.05163056, a: 1}
