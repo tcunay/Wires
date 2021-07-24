@@ -27,6 +27,8 @@ namespace WiresGame
                     _elementsBoardsContainer.Boards[j].AddElement(element);
                 }
             }
+
+            Spawned?.Invoke();
         }
 
         private void InitColorsListByElements(int elementsCountOnOneBoard, int listsCount, out List<IReadOnlyList<Color>> colorsForBoards)

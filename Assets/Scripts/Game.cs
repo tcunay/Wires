@@ -18,12 +18,12 @@ namespace WiresGame
 
         private void OnEnable()
         {
-            _spawner.Spawned += OnElementsSpawned;
+            _spawner.Spawned += StartGame;
         }
 
         private void OnDisable()
         {
-            _spawner.Spawned -= OnElementsSpawned;
+            _spawner.Spawned -= StartGame;
         }
 
         private void Update()
@@ -37,7 +37,7 @@ namespace WiresGame
             _spawner.SpawnElements(_count);
         }
 
-        private void OnElementsSpawned()
+        private void StartGame()
         {
 
         }
