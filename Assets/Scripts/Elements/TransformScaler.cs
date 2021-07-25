@@ -29,6 +29,11 @@ namespace WiresGame.Elements
             _touchHandler.PointerExited += OnPointerExit;
         }
 
+        ~TransformScaler()
+        {
+            UnSubscribeFromTouchHandler();
+        }
+
         public void StopScaling()
         {
             UnSubscribeFromTouchHandler();
