@@ -16,7 +16,7 @@ namespace WiresGame
 
         public void SpawnElements(int elementsCountOnOneBoard)
         {
-            InitColorsListByElements(elementsCountOnOneBoard, _elementsBoardsContainer.Boards.Count, out List<IReadOnlyList<Color>> colorsForBoards);
+            InitColorsListsByElementsBords(elementsCountOnOneBoard, _elementsBoardsContainer.Boards.Count, out List<IReadOnlyList<Color>> colorsForBoards);
 
             for (int i = 0; i < elementsCountOnOneBoard; i++)
             {
@@ -31,9 +31,10 @@ namespace WiresGame
             Spawned?.Invoke();
         }
 
-        private void InitColorsListByElements(int elementsCountOnOneBoard, int listsCount, out List<IReadOnlyList<Color>> colorsForBoards)
+        private void InitColorsListsByElementsBords(int elementsCountOnOneBoard, int listsCount, out List<IReadOnlyList<Color>> colorsForBoards)
         {
             colorsForBoards = new List<IReadOnlyList<Color>>();
+
             for (int i = 0; i < listsCount; i++)
             {
                 colorsForBoards.Add(Shuffler<Color>.CreateNewShuffleList(_colorsLibrary.Characteristics, elementsCountOnOneBoard));

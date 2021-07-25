@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using WiresGame.Elements;
+using WiresGame.UI;
 
 namespace WiresGame
 {
     [RequireComponent(typeof(Spawner))]
     public class Game : MonoBehaviour
     {
+        [SerializeField] private RestartPanel _restartPanel;
         [SerializeField] private int _count;
+
         private Spawner _spawner;
 
         private void Awake()
@@ -18,12 +18,19 @@ namespace WiresGame
 
         private void OnEnable()
         {
-            _spawner.Spawned += StartGame;
+            _restartPanel.RestartButton.onClick.AddListener(StartGame);
+            _restartPanel.ExitButton.onClick.AddListener(Exit);
         }
 
         private void OnDisable()
         {
-            _spawner.Spawned -= StartGame;
+            _restartPanel.RestartButton.onClick.RemoveListener(StartGame);
+            _restartPanel.ExitButton.onClick.RemoveListener(Exit);
+        }
+
+        private void Start()
+        {
+            StartGame();
         }
 
         private void Update()
@@ -37,9 +44,19 @@ namespace WiresGame
             _spawner.SpawnElements(_count);
         }
 
-        private void StartGame()
+        public void StartLevel(int level)
         {
+            SpawnElements();
+        }
 
+        public void StartGame()
+        {
+            StartLevel(1);
+        }
+
+        public void Exit()
+        {
+            Application.Quit();
         }
     }
 }
