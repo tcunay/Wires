@@ -18,27 +18,21 @@ namespace WiresGame.Elements
         public void OnPointerDown(PointerEventData eventData)
         {
             PointerDowned?.Invoke(eventData);
-            //_isScaleFixed = true;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
             PointerEntered?.Invoke(eventData);
-            //transform.localScale *= _scaleFactor;
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
             PointerUped?.Invoke(eventData);
-            //transform.localScale = _initLocalScale;
-            //_isScaleFixed = false;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             PointerExited?.Invoke(eventData);
-            //if(_isScaleFixed == false)
-            //transform.localScale = _initLocalScale;
         }
     }
 }
