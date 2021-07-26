@@ -41,7 +41,7 @@ namespace WiresGame.Elements
 
         private void OnPointerEnter(PointerEventData eventData)
         {
-            ToScale();
+            TryToScale();
         }
 
         private void OnPointerUp(PointerEventData eventData)
@@ -55,8 +55,9 @@ namespace WiresGame.Elements
             TryUnScale();
         }
 
-        private void ToScale()
+        private void TryToScale()
         {
+            if(_isScaleFixed == false)
             _transform.localScale *= _scaleFactor;
         }
 

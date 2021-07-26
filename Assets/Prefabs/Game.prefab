@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _template: {fileID: 2046791035775604464, guid: 5f0dd8981ab0d4946bfaeb76aa23e928, type: 3}
   _colorsLibrary: {fileID: 11400000, guid: 93678c4e4adc6ac448d77046a4a38481, type: 2}
-  _elementsBoardsContainer:
+  _elementsConecter:
     _elementsBoards:
     - {fileID: 5207341871822039456}
     - {fileID: 7258904735615898212}

@@ -51,7 +51,7 @@ namespace WiresGame.Elements
 
         private void OnElementEntered(Element element, PointerEventData eventData)
         {
-            ElementEntered.Invoke(element, eventData);
+            ElementEntered?.Invoke(element, eventData);
         }
 
         private void OnElemenetUped(Element element, PointerEventData eventData)
