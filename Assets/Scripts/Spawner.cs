@@ -10,21 +10,21 @@ namespace WiresGame
     {
         [SerializeField] private Element _template;
         [SerializeField] private ColorsLibrary _colorsLibrary;
-        [SerializeField] private ElementsBoardsContainer _elementsBoardsContainer;
+        [SerializeField] private ElementsConecter _elementsConecter;
 
         public event Action Spawned;
 
         public void SpawnElements(int elementsCountOnOneBoard)
         {
-            InitColorsListsByElementsBords(elementsCountOnOneBoard, _elementsBoardsContainer.Boards.Count, out List<IReadOnlyList<Color>> colorsForBoards);
+            InitColorsListsByElementsBords(elementsCountOnOneBoard, _elementsConecter.Boards.Count, out List<IReadOnlyList<Color>> colorsForBoards);
 
             for (int i = 0; i < elementsCountOnOneBoard; i++)
             {
-                for (int j = 0; j < _elementsBoardsContainer.Boards.Count; j++)
+                for (int j = 0; j < _elementsConecter.Boards.Count; j++)
                 {
-                    Element element = Instantiate(_template, _elementsBoardsContainer.Boards[j].transform);
+                    Element element = Instantiate(_template, _elementsConecter.Boards[j].transform);
                     element.SetColor(colorsForBoards[j][i]);
-                    _elementsBoardsContainer.Boards[j].AddElement(element);
+                    _elementsConecter.Boards[j].AddElement(element);
                 }
             }
 

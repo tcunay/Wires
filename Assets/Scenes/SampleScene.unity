@@ -335,6 +335,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 5207341871822039456, guid: 36ef13168fea6994da323bc08c83e3fa, type: 3}
+      propertyPath: _touchHandler
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7258904735615898212, guid: 36ef13168fea6994da323bc08c83e3fa, type: 3}
+      propertyPath: _touchHandler
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36ef13168fea6994da323bc08c83e3fa, type: 3}
 --- !u!1001 &5010674646588459283

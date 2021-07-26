@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using WiresGame.Elements;
 using WiresGame.UI;
 
 namespace WiresGame
@@ -10,6 +12,7 @@ namespace WiresGame
         [SerializeField] private int _count;
 
         private Spawner _spawner;
+        private IReadOnlyList<ElementsBoard> _boards;
 
         private void Awake()
         {
@@ -36,17 +39,17 @@ namespace WiresGame
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
-                SpawnElements();
+                FillBoards();
         }
 
-        private void SpawnElements()
+        private void FillBoards()
         {
             _spawner.SpawnElements(_count);
         }
 
         public void StartLevel(int level)
         {
-            SpawnElements();
+            FillBoards();
         }
 
         public void StartGame()
