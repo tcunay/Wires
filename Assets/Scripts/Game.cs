@@ -8,11 +8,11 @@ namespace WiresGame
     [RequireComponent(typeof(Spawner))]
     public class Game : MonoBehaviour
     {
+        [SerializeField] private ElementsConnector _elementsConnector;
         [SerializeField] private RestartPanel _restartPanel;
         [SerializeField] private int _count;
 
         private Spawner _spawner;
-        private IReadOnlyList<ElementsBoard> _boards;
 
         private void Awake()
         {
@@ -44,7 +44,7 @@ namespace WiresGame
 
         private void FillBoards()
         {
-            _spawner.SpawnElements(_count);
+            _elementsConnector.Init(_spawner, _count);
         }
 
         public void StartLevel(int level)

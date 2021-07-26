@@ -17,8 +17,10 @@ namespace WiresGame.Elements
         public Action<Element, PointerEventData> Clicked;
         public Action<Element, PointerEventData> Entered;
         public Action<Element, PointerEventData> Uped;
+        public Action<Element, PointerEventData> Exited;
 
         public ElementsBoard ParentBoard => _parentBoard;
+        public TouchHandler TouchHandler => _touchHandler;
         public Color Color => _image.color;
 
         private void Awake()
@@ -30,6 +32,7 @@ namespace WiresGame.Elements
             _touchHandler.PointerDowned += OnClicked;
             _touchHandler.PointerEntered += OnEntered;
             _touchHandler.PointerUped += OnCanseled;
+            _touchHandler.PointerExited += OnExited;
         }
 
         public void SetColor(Color color)
@@ -42,9 +45,9 @@ namespace WiresGame.Elements
             _parentBoard = board;
         }
 
-        public void Method()
+        public void Connect()
         {
-            _transformScaler.StopScaling();
+            _transformScaler.OnConnect();
         }
 
         private void OnClicked(PointerEventData eventData)
@@ -59,8 +62,12 @@ namespace WiresGame.Elements
 
         private void OnCanseled(PointerEventData eventData)
         {
-            Debug.Log(Color);
             Uped?.Invoke(this, eventData);
+        }
+
+        private void OnExited(PointerEventData eventData)
+        {
+            Exited?.Invoke(this, eventData);
         }
     }
 }

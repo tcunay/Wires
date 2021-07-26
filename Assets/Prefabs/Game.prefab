@@ -45,6 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accdb24e6919b104c8be1d3f6f08ccac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _elementsConnector:
+    _elementsBoards:
+    - {fileID: 5207341871822039456}
+    - {fileID: 7258904735615898212}
   _restartPanel: {fileID: 6894974653002949835}
   _count: 10
 --- !u!114 &1321842537597238918
@@ -61,10 +65,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _template: {fileID: 2046791035775604464, guid: 5f0dd8981ab0d4946bfaeb76aa23e928, type: 3}
   _colorsLibrary: {fileID: 11400000, guid: 93678c4e4adc6ac448d77046a4a38481, type: 2}
-  _elementsConecter:
-    _elementsBoards:
-    - {fileID: 5207341871822039456}
-    - {fileID: 7258904735615898212}
 --- !u!1001 &1319804860251465852
 PrefabInstance:
   m_ObjectHideFlags: 0

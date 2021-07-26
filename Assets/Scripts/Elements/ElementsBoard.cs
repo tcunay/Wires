@@ -40,6 +40,7 @@ namespace WiresGame.Elements
             element.Clicked += OnElementClicked;
             element.Entered += OnElementEntered;
             element.Uped += OnElemenetUped;
+            element.Exited += OnElementExited;
 
             _elements.Add(element);
         }
@@ -70,6 +71,16 @@ namespace WiresGame.Elements
             {
                 item.Uped += ElementUped;
             }
+        }
+
+        public void Clear()
+        {
+            foreach (var item in _elements)
+            {
+                Destroy(item.gameObject);
+            }
+
+            _elements = new List<Element>();
         }
     }
 }

@@ -29,6 +29,12 @@ namespace WiresGame.Elements
             UnSubscribeFromTouchHandler();
         }
 
+        public void OnConnect()
+        {
+            TryToScale();
+            StopScaling();
+        }
+
         public void StopScaling()
         {
             UnSubscribeFromTouchHandler();
@@ -57,7 +63,13 @@ namespace WiresGame.Elements
 
         private void TryToScale()
         {
-            if(_isScaleFixed == false)
+            if (_isScaleFixed == false)
+                ToScale();
+        }
+
+        private void ToScale()
+        {
+            UnScale();
             _transform.localScale *= _scaleFactor;
         }
 
