@@ -4,12 +4,13 @@ using UnityEngine.EventSystems;
 
 namespace WiresGame.Elements
 {
-    public class TouchHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
+    public class TouchHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler
     {
         public event Action<PointerEventData> PointerDowned;
         public event Action<PointerEventData> PointerEntered;
         public event Action<PointerEventData> PointerUped;
         public event Action<PointerEventData> PointerExited;
+        public event Action<PointerEventData> Draged;
 
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -29,6 +30,11 @@ namespace WiresGame.Elements
         public void OnPointerExit(PointerEventData eventData)
         {
             PointerExited?.Invoke(eventData);
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            Draged?.Invoke(eventData);
         }
     }
 }

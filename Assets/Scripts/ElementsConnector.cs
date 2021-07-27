@@ -15,8 +15,9 @@ namespace WiresGame
         private Element _fromElement;
         private Element _intoElement;
 
-        public event Action<Element, Element> Conected;
-        public event Action<Color, Vector2> ElementClicked;
+        public event Action<Element, Element> Connected;
+        public event Action ConnectFailed;
+        public event Action<Element, PointerEventData> ElementClicked;
 
         ~ElementsConnector()
         {
@@ -51,7 +52,7 @@ namespace WiresGame
         private void OnElementClicked(Element element, PointerEventData eventData)
         {
             SetFromElement(element);
-            ElementClicked?.Invoke(element.Color, eventData.position);
+            ElementClicked?.Invoke(element, eventData);
         }
 
         private void OnElementEntered(Element element, PointerEventData eventData)
@@ -61,7 +62,7 @@ namespace WiresGame
 
         private void OnElementUped(Element element, PointerEventData eventData)
         {
-            TryConnect(element);
+            TryConnect();
         }
 
         private void OnElementExited(Element element, PointerEventData eventData)
@@ -71,7 +72,6 @@ namespace WiresGame
 
         private void SetNullElements()
         {
-            SetFromElement(null);
             SetIntoElement(null);
         }
 
@@ -85,17 +85,20 @@ namespace WiresGame
             _fromElement = element;
         }
 
-        private void TryConnect(Element element)
+        private void TryConnect()
         {
-            if (_intoElement == null || _fromElement == null) return;
-
-            if (IsColorsMatch(_intoElement.Color, _fromElement.Color))
+            if (_fromElement != null && _intoElement != null)
             {
-                if (IsBoardsMatch(_intoElement.ParentBoard, _fromElement.ParentBoard) == false)
+                if (IsColorsMatch(_fromElement.Color, _intoElement.Color))
                 {
-                    ConnectElements();
+                    if (IsBoardsMatch(_fromElement.ParentBoard, _intoElement.ParentBoard) == false)
+                    {
+                        ConnectElements();
+                        return;
+                    }
                 }
             }
+            ConnectFailed?.Invoke();
         }
 
         private bool IsColorsMatch(Color one, Color two)
@@ -113,7 +116,7 @@ namespace WiresGame
             _intoElement.Connect();
             _fromElement.Connect();
 
-            Conected?.Invoke(_fromElement, _intoElement);
+            Connected?.Invoke(_fromElement, _intoElement);
         }
 
         private void UnSubscribeFromBoards()

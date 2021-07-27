@@ -18,6 +18,7 @@ namespace WiresGame.Elements
         public Action<Element, PointerEventData> Entered;
         public Action<Element, PointerEventData> Uped;
         public Action<Element, PointerEventData> Exited;
+        public Action<Element> Conected;
 
         public ElementsBoard ParentBoard => _parentBoard;
         public TouchHandler TouchHandler => _touchHandler;
@@ -48,6 +49,7 @@ namespace WiresGame.Elements
         public void Connect()
         {
             _transformScaler.OnConnect();
+            Conected?.Invoke(this);
         }
 
         private void OnClicked(PointerEventData eventData)
