@@ -11,16 +11,19 @@ namespace WiresGame
     {
         [SerializeField] private List<ElementsBoard> _elementsBoards;
 
-        private Spawner _spawner;
+        private ElementsSpawner _spawner;
         private Element _fromElement;
         private Element _intoElement;
+
+        public event Action<Element, Element> Conected;
+        public event Action<Color, Vector2> ElementClicked;
 
         ~ElementsConnector()
         {
             UnSubscribeFromBoards();
         }
 
-        public void Init(Spawner spawner, int elementsCount)
+        public void Init(ElementsSpawner spawner, int elementsCount)
         {
             _spawner = spawner;
 
@@ -38,34 +41,61 @@ namespace WiresGame
         {
             foreach (var item in _elementsBoards)
             {
-                item.ElementClicked += SetFromElement;
-                item.ElementEntered += SetIntoElement;
-                item.ElementUped += TryConnect;
-                item.ElementExited += SetNullIntoElement;
+                item.ElementClicked += OnElementClicked;
+                item.ElementEntered += OnElementEntered;
+                item.ElementUped += OnElementUped;
+                item.ElementExited += OnElementExited;
             }
         }
 
-        private void SetNullIntoElement(Element element, PointerEventData eventData)
+        private void OnElementClicked(Element element, PointerEventData eventData)
         {
-            _intoElement = null;
+            SetFromElement(element);
+            ElementClicked?.Invoke(element.Color, eventData.position);
         }
 
-        private void SetIntoElement(Element element, PointerEventData eventData)
+        private void OnElementEntered(Element element, PointerEventData eventData)
+        {
+            SetIntoElement(element);
+        }
+
+        private void OnElementUped(Element element, PointerEventData eventData)
+        {
+            TryConnect(element);
+        }
+
+        private void OnElementExited(Element element, PointerEventData eventData)
+        {
+            SetNullElements();
+        }
+
+        private void SetNullElements()
+        {
+            SetFromElement(null);
+            SetIntoElement(null);
+        }
+
+        private void SetIntoElement(Element element)
         {
             _intoElement = element;
         }
 
-        private void SetFromElement(Element element, PointerEventData eventData)
+        private void SetFromElement(Element element)
         {
             _fromElement = element;
         }
 
-        private void TryConnect(Element element, PointerEventData eventData)
+        private void TryConnect(Element element)
         {
             if (_intoElement == null || _fromElement == null) return;
 
-            if(IsColorsMatch(_intoElement.Color, _fromElement.Color) && IsBoardsMatch(_intoElement.ParentBoard, _fromElement.ParentBoard) == false)
-                ConnectElements();
+            if (IsColorsMatch(_intoElement.Color, _fromElement.Color))
+            {
+                if (IsBoardsMatch(_intoElement.ParentBoard, _fromElement.ParentBoard) == false)
+                {
+                    ConnectElements();
+                }
+            }
         }
 
         private bool IsColorsMatch(Color one, Color two)
@@ -80,18 +110,19 @@ namespace WiresGame
 
         private void ConnectElements()
         {
-            Debug.Log("Connect");
             _intoElement.Connect();
             _fromElement.Connect();
+
+            Conected?.Invoke(_fromElement, _intoElement);
         }
 
         private void UnSubscribeFromBoards()
         {
             foreach (var item in _elementsBoards)
             {
-                item.ElementClicked -= SetFromElement;
-                item.ElementEntered -= SetIntoElement;
-                item.ElementUped -= TryConnect;
+                item.ElementClicked -= OnElementClicked;
+                item.ElementEntered -= OnElementEntered;
+                item.ElementUped -= OnElementUped;
             }
         }
 

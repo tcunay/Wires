@@ -6,7 +6,7 @@ using WiresGame.Libraries;
 
 namespace WiresGame
 {
-    public class Spawner : MonoBehaviour
+    public class ElementsSpawner : MonoBehaviour
     {
         [SerializeField] private Element _template;
         [SerializeField] private ColorsLibrary _colorsLibrary;

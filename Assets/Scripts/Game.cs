@@ -5,18 +5,19 @@ using WiresGame.UI;
 
 namespace WiresGame
 {
-    [RequireComponent(typeof(Spawner))]
+    [RequireComponent(typeof(ElementsSpawner))]
     public class Game : MonoBehaviour
     {
         [SerializeField] private ElementsConnector _elementsConnector;
+        [SerializeField] private LineViewer _lineViewer;
         [SerializeField] private RestartPanel _restartPanel;
         [SerializeField] private int _count;
 
-        private Spawner _spawner;
+        private ElementsSpawner _spawner;
 
         private void Awake()
         {
-            _spawner = GetComponent<Spawner>();
+            _spawner = GetComponent<ElementsSpawner>();
         }
 
         private void OnEnable()
@@ -50,6 +51,7 @@ namespace WiresGame
         public void StartLevel(int level)
         {
             FillBoards();
+            _lineViewer.Init(_elementsConnector);
         }
 
         public void StartGame()
