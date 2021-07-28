@@ -16,6 +16,7 @@ namespace WiresGame
         private Element _intoElement;
 
         public event Action Connected;
+        public event Action Finished;
         public event Action ConnectFailed;
         public event Action<Element, PointerEventData> ElementClicked;
 
@@ -32,10 +33,15 @@ namespace WiresGame
             FillBoards(elementsCount);
         }
 
+        public void Stop()
+        {
+            UnSubscribeFromBoards();
+        }
+
         private void FillBoards(int elementsCount)
         {
             _spawner.Spawned += OnElementsSpawned;
-            _spawner.SpawnElementsInElementConecter(_elementsBoards, elementsCount);
+            _spawner.SpawnElementsInElementsBoards(_elementsBoards, elementsCount);
         }
 
         private void OnElementsSpawned()
@@ -116,7 +122,23 @@ namespace WiresGame
             _intoElement.Connect();
             _fromElement.Connect();
 
+            TrySendFinishMessage();
             Connected?.Invoke();
+        }
+
+        private void TrySendFinishMessage()
+        {
+            if (HaveFreeElements() == false)
+                Finished?.Invoke();
+        }
+
+        private bool HaveFreeElements()
+        {
+            foreach (var item in _elementsBoards)
+            {
+                if (item.HaveFreeElements() == true) return true;
+            }
+            return false;
         }
 
         private void UnSubscribeFromBoards()

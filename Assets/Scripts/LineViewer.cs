@@ -39,24 +39,23 @@ namespace WiresGame
         public void Init(ElementsConnector elementsConnector)
         {
             Clear();
-            SpawnNewLine();
             _elementsConnector = elementsConnector;
             _elementsConnector.ElementClicked += OnBeginRender;
             _elementsConnector.Connected += OnConected;
             _elementsConnector.ConnectFailed += ClearLine;
-
         }
 
         private void OnConected()
         {
             DeInitTouchHandler();
-            SaveLine();
+            
             SpawnNewLine();
         }
 
         private void SpawnNewLine()
         {
             _currentLine = Instantiate(_template, transform).GetComponent<LineRenderer>();
+            SaveLine();
         }
 
         private void SaveLine()
@@ -67,7 +66,6 @@ namespace WiresGame
         private void ClearLine()
         {
             _currentLine.positionCount = 0;
-
         }
 
         private void Clear()
@@ -88,6 +86,7 @@ namespace WiresGame
 
         private void OnBeginRender(Element element, PointerEventData eventData)
         {
+            SpawnNewLine();
             SetStartPoint(eventData.position);
             SetColor(element.Color);
             InitTouchHandler(element);

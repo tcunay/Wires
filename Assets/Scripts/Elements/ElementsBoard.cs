@@ -15,6 +15,7 @@ namespace WiresGame.Elements
         private VerticalLayoutGroup _verticalLayoutGroup;
         private RectTransform _rectTransform;
         private ChildControlHeightHandler _childControlHeightHandler;
+        private int _conectedElementCount;
 
         public Action<Element, PointerEventData> ElementClicked;
         public Action<Element, PointerEventData> ElementEntered;
@@ -41,15 +42,19 @@ namespace WiresGame.Elements
             element.Entered += OnElementEntered;
             element.Uped += OnElemenetUped;
             element.Exited += OnElementExited;
-            //element.Conected += RemoveFromListElement;
+            element.Conected += RemoveFromListElement;
 
             _elements.Add(element);
         }
 
         private void RemoveFromListElement(Element element)
         {
-            //_elements.Remove(element);
-            //element.Conected -= RemoveFromListElement;
+            _conectedElementCount++;
+        }
+
+        public bool HaveFreeElements()
+        {
+            return _conectedElementCount < _elements.Count;
         }
 
         private void OnElementClicked(Element element, PointerEventData eventData)
@@ -88,6 +93,7 @@ namespace WiresGame.Elements
             }
 
             _elements = new List<Element>();
+            _conectedElementCount = 0;
         }
     }
 }

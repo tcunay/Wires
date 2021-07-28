@@ -14,7 +14,7 @@ namespace WiresGame.Player
         public void AddScore(int score)
         {
             if (score < 0)
-                new ArgumentOutOfRangeException(nameof(score) + " < 0");
+                throw new ArgumentOutOfRangeException(nameof(score) + " < 0");
 
             _score += score;
         }

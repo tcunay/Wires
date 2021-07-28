@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
-using WiresGame.Elements;
 using WiresGame.UI;
+using WiresGame.Player;
 
 namespace WiresGame
 {
@@ -11,9 +10,12 @@ namespace WiresGame
         [SerializeField] private ElementsConnector _elementsConnector;
         [SerializeField] private LineViewer _lineViewer;
         [SerializeField] private RestartPanel _restartPanel;
-        [SerializeField] private int _count;
 
+        private Timer _timer = new Timer();
         private ElementsSpawner _spawner;
+        private DifficultyCalculator _difficultyCalculator = new DifficultyCalculator();
+        private PlayerStats _playerStats = new PlayerStats();
+        private int _currentLevel = 1;
 
         private void Awake()
         {
@@ -24,12 +26,18 @@ namespace WiresGame
         {
             _restartPanel.RestartButton.onClick.AddListener(StartGame);
             _restartPanel.ExitButton.onClick.AddListener(Exit);
+
+            _elementsConnector.Finished += NextLevel;
+            _timer.TickEnded += GameOver;
         }
 
         private void OnDisable()
         {
             _restartPanel.RestartButton.onClick.RemoveListener(StartGame);
             _restartPanel.ExitButton.onClick.RemoveListener(Exit);
+
+            _elementsConnector.Finished -= NextLevel;
+            _timer.TickEnded -= GameOver;
         }
 
         private void Start()
@@ -37,31 +45,44 @@ namespace WiresGame
             StartGame();
         }
 
-        private void Update()
+        private void NextLevel()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-                FillBoards();
-        }
-
-        private void FillBoards()
-        {
-            _elementsConnector.Init(_spawner, _count);
+            _currentLevel++;
+            StartLevel(_currentLevel);
         }
 
         public void StartLevel(int level)
         {
+            StartCoroutine(_timer.StartCountdown(_difficultyCalculator.CalculateLevelTime(level)));
+
             FillBoards();
             _lineViewer.Init(_elementsConnector);
         }
 
         public void StartGame()
         {
-            StartLevel(1);
+            StartLevel(_currentLevel);
+        }
+
+        private void GameOver()
+        {
+            StopLevel();
+        }
+
+        private void StopLevel()
+        {
+            _timer.StopTick();
+            _elementsConnector.Stop();
         }
 
         public void Exit()
         {
             Application.Quit();
+        }
+
+        private void FillBoards()
+        {
+            _elementsConnector.Init(_spawner, _difficultyCalculator.CalculateElementsValue(_currentLevel));
         }
     }
 }

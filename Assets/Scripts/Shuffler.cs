@@ -3,21 +3,21 @@ using System.Collections.Generic;
 
 namespace WiresGame
 {
-    public static class Shuffler<T>
+    public class Shuffler<T>
     {
-        private static Random _random = new Random();
+        private Random _random = new Random();
 
-        public static IReadOnlyList<T> CreateNewShuffleList(IReadOnlyList<T> sourceItems, int count)
+        public IReadOnlyList<T> CreateNewShuffleList(IReadOnlyList<T> sourceItems, int count)
         {
-            if (count > sourceItems.Count)
-                throw new ArgumentOutOfRangeException();
+            //if (count > sourceItems.Count)
+            //    throw new ArgumentOutOfRangeException();
 
             CreateNewList(sourceItems, count, out List<T> newList);
 
             return Shuffle(newList);
         }
 
-        private static List<T> Shuffle(List<T> target)
+        private List<T> Shuffle(List<T> target)
         {
             // Fisher–Yates shuffle.
             for (int i = target.Count - 1; i >= 1; i--)
@@ -31,7 +31,7 @@ namespace WiresGame
             return target;
         }
 
-        private static void CreateNewList(IReadOnlyList<T> source, int count, out List<T> newList)
+        private void CreateNewList(IReadOnlyList<T> source, int count, out List<T> newList)
         {
             newList = new List<T>();
 

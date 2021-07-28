@@ -9,13 +9,13 @@ namespace WiresGame
     public class ElementsSpawner : MonoBehaviour
     {
         [SerializeField] private Element _template;
-        [SerializeField] private ColorsLibrary _colorsLibrary;
+        [SerializeField] private ColorListsInitializer _colorListsInitializer;
 
         public event Action Spawned;
 
-        public void SpawnElementsInElementConecter(IReadOnlyList<ElementsBoard> boards , int elementsCountOnOneBoard)
+        public void SpawnElementsInElementsBoards(IReadOnlyList<ElementsBoard> boards, int elementsCountOnOneBoard)
         {
-            InitColorsListsByElementsBords(elementsCountOnOneBoard, boards.Count, out List<IReadOnlyList<Color>> colorsForBoards);
+            _colorListsInitializer.InitColorsLists(elementsCountOnOneBoard, boards.Count, out List<IReadOnlyList<Color>> colorsForBoards);
 
             for (int i = 0; i < elementsCountOnOneBoard; i++)
             {
@@ -28,16 +28,6 @@ namespace WiresGame
             }
 
             Spawned?.Invoke();
-        }
-
-        private void InitColorsListsByElementsBords(int elementsCountOnOneBoard, int listsCount, out List<IReadOnlyList<Color>> colorsForBoards)
-        {
-            colorsForBoards = new List<IReadOnlyList<Color>>();
-
-            for (int i = 0; i < listsCount; i++)
-            {
-                colorsForBoards.Add(Shuffler<Color>.CreateNewShuffleList(_colorsLibrary.Characteristics, elementsCountOnOneBoard));
-            }
         }
     }
 }

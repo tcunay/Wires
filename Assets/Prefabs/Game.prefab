@@ -51,7 +51,6 @@ MonoBehaviour:
     - {fileID: 7258904735615898212}
   _lineViewer: {fileID: 7116027960100141131}
   _restartPanel: {fileID: 6894974653002949835}
-  _count: 10
 --- !u!114 &1321842537597238918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _template: {fileID: 2046791035775604464, guid: 5f0dd8981ab0d4946bfaeb76aa23e928, type: 3}
-  _colorsLibrary: {fileID: 11400000, guid: 93678c4e4adc6ac448d77046a4a38481, type: 2}
+  _colorListsInitializer:
+    _colorsLibrary: {fileID: 11400000, guid: 93678c4e4adc6ac448d77046a4a38481, type: 2}
 --- !u!1001 &1319804860251465852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -160,6 +160,10 @@ PrefabInstance:
     - target: {fileID: 2466547295754478, guid: f0ae5f5543719b142b23dd4795f401e8, type: 3}
       propertyPath: m_Name
       value: Game Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 113626822517067532, guid: f0ae5f5543719b142b23dd4795f401e8, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 581371323260820969, guid: f0ae5f5543719b142b23dd4795f401e8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
