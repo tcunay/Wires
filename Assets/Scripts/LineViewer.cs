@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using WiresGame.Elements;
@@ -17,7 +14,6 @@ namespace WiresGame
         private ElementsConnector _elementsConnector;
         private TouchHandler _touchHandler;
         private Camera _camera;
-
         private Vector2 _startPoint;
         private Vector2 _endPoint;
 
@@ -51,7 +47,7 @@ namespace WiresGame
 
         }
 
-        private void OnConected(Element arg1, Element arg2)
+        private void OnConected()
         {
             DeInitTouchHandler();
             SaveLine();

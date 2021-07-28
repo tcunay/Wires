@@ -15,7 +15,7 @@ namespace WiresGame
         private Element _fromElement;
         private Element _intoElement;
 
-        public event Action<Element, Element> Connected;
+        public event Action Connected;
         public event Action ConnectFailed;
         public event Action<Element, PointerEventData> ElementClicked;
 
@@ -116,7 +116,7 @@ namespace WiresGame
             _intoElement.Connect();
             _fromElement.Connect();
 
-            Connected?.Invoke(_fromElement, _intoElement);
+            Connected?.Invoke();
         }
 
         private void UnSubscribeFromBoards()
