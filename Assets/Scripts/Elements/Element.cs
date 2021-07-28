@@ -26,14 +26,13 @@ namespace WiresGame.Elements
 
         private void Awake()
         {
-            _touchHandler = GetComponent<TouchHandler>();
+            InitTouchHandler();
             _image = GetComponent<Image>();
-            _transformScaler = new TransformScaler(transform, _touchHandler);
+        }
 
-            _touchHandler.PointerDowned += OnClicked;
-            _touchHandler.PointerEntered += OnEntered;
-            _touchHandler.PointerUped += OnCanseled;
-            _touchHandler.PointerExited += OnExited;
+        private void OnDisable()
+        {
+            UnSubscribeTouchHandler();
         }
 
         public void SetColor(Color color)
@@ -49,6 +48,7 @@ namespace WiresGame.Elements
         public void Connect()
         {
             _transformScaler.OnConnect();
+            UnSubscribeTouchHandler();
             Conected?.Invoke(this);
         }
 
@@ -70,6 +70,29 @@ namespace WiresGame.Elements
         private void OnExited(PointerEventData eventData)
         {
             Exited?.Invoke(this, eventData);
+        }
+
+        private void InitTouchHandler()
+        {
+            _touchHandler = GetComponent<TouchHandler>();
+            _transformScaler = new TransformScaler(transform, _touchHandler);
+            SubscribeTouchHandler();
+        }
+
+        private void SubscribeTouchHandler()
+        {
+            _touchHandler.PointerDowned += OnClicked;
+            _touchHandler.PointerEntered += OnEntered;
+            _touchHandler.PointerUped += OnCanseled;
+            _touchHandler.PointerExited += OnExited;
+        }
+
+        private void UnSubscribeTouchHandler()
+        {
+            _touchHandler.PointerDowned -= OnClicked;
+            _touchHandler.PointerEntered -= OnEntered;
+            _touchHandler.PointerUped -= OnCanseled;
+            _touchHandler.PointerExited -= OnExited;
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using WiresGame.Elements;
@@ -52,6 +53,7 @@ namespace WiresGame
 
         private void OnConected(Element arg1, Element arg2)
         {
+            DeInitTouchHandler();
             SaveLine();
             SpawnNewLine();
         }
@@ -101,6 +103,12 @@ namespace WiresGame
 
             _touchHandler = element.TouchHandler;
             _touchHandler.Draged += OnDrag;
+        }
+
+        private void DeInitTouchHandler()
+        {
+            UnSubscribeFromTouchHandler();
+            _touchHandler = null;
         }
 
         private void UnSubscribeFromTouchHandler()

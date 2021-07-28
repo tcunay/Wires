@@ -41,7 +41,7 @@ namespace WiresGame.Elements
             element.Entered += OnElementEntered;
             element.Uped += OnElemenetUped;
             element.Exited += OnElementExited;
-            element.Conected += RemoveFromListElement;
+            //element.Conected += RemoveFromListElement;
 
             _elements.Add(element);
         }
