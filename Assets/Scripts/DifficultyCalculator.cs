@@ -5,7 +5,7 @@ namespace WiresGame
     public class DifficultyCalculator
     {
         private int _minTimeValue = 10;
-        private float _initTimeValue = 30;
+        private float _initTimeValue = 10;
         private int _timeCountFactor = 3;
         private int _elementsCountFactor = 1;
 

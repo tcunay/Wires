@@ -1,11 +1,11 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using WiresGame.Player;
 
 namespace WiresGame.SaveSystems
 {
-    [Serializable]
+    [System.Serializable]
     public class SaveData
     {
-        public PlayerStatsData[] PlayerStatsDatas;
+        public List<PlayerStatsData> PlayerStatsDatas = new List<PlayerStatsData>();
     }
 }

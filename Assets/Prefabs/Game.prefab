@@ -50,7 +50,7 @@ MonoBehaviour:
     - {fileID: 5207341871822039456}
     - {fileID: 7258904735615898212}
   _lineViewer: {fileID: 7116027960100141131}
-  _restartPanel: {fileID: 6894974653002949835}
+  _menuPanel: {fileID: 6894974653002949835}
   _gamePanel: {fileID: 173946877834867584}
   _timeViewer:
     _text: {fileID: 1305789968949003781}

@@ -10,7 +10,7 @@ namespace WiresGame
     {
         [SerializeField] private ElementsConnector _elementsConnector;
         [SerializeField] private LineViewer _lineViewer;
-        [SerializeField] private RestartPanel _restartPanel;
+        [SerializeField] private MenuPanel _menuPanel;
         [SerializeField] private GameObject _gamePanel;
         [SerializeField] private UIValuesViewer _timeViewer;
         [SerializeField] private UIValuesViewer _scoreViewer;
@@ -30,16 +30,16 @@ namespace WiresGame
 
         private void OnEnable()
         {
-            _restartPanel.RestartButton.onClick.AddListener(StartGame);
-            _restartPanel.ExitButton.onClick.AddListener(Exit);
+            _menuPanel.RestartButton.onClick.AddListener(StartGame);
+            _menuPanel.ExitButton.onClick.AddListener(Exit);
 
             _elementsConnector.Finished += NextLevel;
         }
 
         private void OnDisable()
         {
-            _restartPanel.RestartButton.onClick.RemoveListener(StartGame);
-            _restartPanel.ExitButton.onClick.RemoveListener(Exit);
+            _menuPanel.RestartButton.onClick.RemoveListener(StartGame);
+            _menuPanel.ExitButton.onClick.RemoveListener(Exit);
 
             _elementsConnector.Finished -= NextLevel;
 
@@ -78,7 +78,7 @@ namespace WiresGame
         {
             StopLevel();
             ToglePanels(false);
-            Debug.Log("GameOver");
+            _menuPanel.SaveProgress(_playerStats.StatsData);
         }
 
         private void StopLevel()
@@ -113,7 +113,7 @@ namespace WiresGame
         private void ToglePanels(bool isGamePanelActive)
         {
             _gamePanel.SetActive(isGamePanelActive);
-            _restartPanel.gameObject.SetActive(isGamePanelActive == false);
+            _menuPanel.SetActive(isGamePanelActive == false);
         }
     }
 }

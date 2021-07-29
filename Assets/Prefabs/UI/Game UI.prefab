@@ -574,7 +574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8419401823894990161, guid: 0703939c8c66e554eb3141ccba1ef5f7, type: 3}
       propertyPath: m_Name
-      value: Restart Panel
+      value: Menu Panel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0703939c8c66e554eb3141ccba1ef5f7, type: 3}

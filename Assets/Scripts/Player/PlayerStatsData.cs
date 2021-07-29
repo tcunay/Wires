@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
-
-namespace WiresGame.Player
+﻿namespace WiresGame.Player
 {
+    [System.Serializable]
     public struct PlayerStatsData
     {
         public string Name;
