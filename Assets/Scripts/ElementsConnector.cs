@@ -95,12 +95,15 @@ namespace WiresGame
         {
             if (_fromElement != null && _intoElement != null)
             {
-                if (IsColorsMatch(_fromElement.Color, _intoElement.Color))
+                if(_fromElement.IsConected == false && _intoElement.IsConected == false)
                 {
-                    if (IsBoardsMatch(_fromElement.ParentBoard, _intoElement.ParentBoard) == false)
+                    if (IsColorsMatch(_fromElement.Color, _intoElement.Color))
                     {
-                        ConnectElements();
-                        return;
+                        if (IsBoardsMatch(_fromElement.ParentBoard, _intoElement.ParentBoard) == false)
+                        {
+                            ConnectElements();
+                            return;
+                        }
                     }
                 }
             }

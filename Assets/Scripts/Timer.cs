@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Timer
 {
+    private const float _oneSecond = 1;
+
     private int _currentTime;
-    private float _oneSecond = 1;
     private bool _isTicking;
 
     public event Action<int> TimeTicked;
@@ -17,13 +18,13 @@ public class Timer
         _isTicking = true;
         while (_isTicking)
         {
+            TimeTicked?.Invoke(_currentTime);
+            if (_currentTime == 0)
+                StopTick();
+
             yield return new WaitForSeconds(_oneSecond);
 
             _currentTime--;
-            TimeTicked?.Invoke(_currentTime);
-
-            if (_currentTime == 0)
-                StopTick();
         }
     }
 

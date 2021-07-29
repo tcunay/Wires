@@ -77,14 +77,6 @@ namespace WiresGame.Elements
             ElementExited?.Invoke(element, eventData);
         }
 
-        public void SubscribeElementCanseled()
-        {
-            foreach (var item in _elements)
-            {
-                item.Uped += ElementUped;
-            }
-        }
-
         public void Clear()
         {
             foreach (var item in _elements)

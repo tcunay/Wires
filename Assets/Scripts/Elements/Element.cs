@@ -13,6 +13,7 @@ namespace WiresGame.Elements
         private Image _image;
         private TransformScaler _transformScaler;
         private ElementsBoard _parentBoard;
+        private bool _isConected = false;
 
         public Action<Element, PointerEventData> Clicked;
         public Action<Element, PointerEventData> Entered;
@@ -23,6 +24,7 @@ namespace WiresGame.Elements
         public ElementsBoard ParentBoard => _parentBoard;
         public TouchHandler TouchHandler => _touchHandler;
         public Color Color => _image.color;
+        public bool IsConected => _isConected;
 
         private void Awake()
         {
@@ -47,6 +49,7 @@ namespace WiresGame.Elements
 
         public void Connect()
         {
+            _isConected = true;
             _transformScaler.OnConnect();
             UnSubscribeTouchHandler();
             Conected?.Invoke(this);
