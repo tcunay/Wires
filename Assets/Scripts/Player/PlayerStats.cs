@@ -4,24 +4,35 @@ using System;
 
 namespace WiresGame.Player
 {
-    public class PlayerStats
+    public class PlayerStats : INeedViewer<int>
     {
-        private string _name;
-        private int _score;
+        private ElementsConnector _elementsConnector;
+        private PlayerStatsData _statsData;
 
-        public int Score => _score;
+        public event Action<int> NeedViewed;
 
-        public void AddScore(int score)
+        public PlayerStatsData StatsData => _statsData;
+
+        public PlayerStats(ElementsConnector elementsConnector)
         {
-            if (score < 0)
-                throw new ArgumentOutOfRangeException(nameof(score) + " < 0");
+            _elementsConnector = elementsConnector;
+            _elementsConnector.Connected += AddScore;
+        }
 
-            _score += score;
+        ~PlayerStats()
+        {
+            _elementsConnector.Connected -= AddScore;
+        }
+
+        private void AddScore()
+        {
+            _statsData.Score++;
+            NeedViewed?.Invoke(_statsData.Score);
         }
 
         public void SetName(string name)
         {
-            _name = name;
+            _statsData.Name = name;
         }
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using WiresGame.UI;
 using WiresGame.Player;
+using TMPro;
 
 namespace WiresGame
 {
@@ -11,14 +12,15 @@ namespace WiresGame
         [SerializeField] private LineViewer _lineViewer;
         [SerializeField] private RestartPanel _restartPanel;
         [SerializeField] private GameObject _gamePanel;
-        [SerializeField] private TimeViewer _timeViewer;
+        [SerializeField] private UIValuesViewer _timeViewer;
+        [SerializeField] private UIValuesViewer _scoreViewer;
 
         private const int _startLevel = 1;
 
         private Timer _timer;
         private ElementsSpawner _spawner;
         private DifficultyCalculator _difficultyCalculator = new DifficultyCalculator();
-        private PlayerStats _playerStats = new PlayerStats();
+        private PlayerStats _playerStats;
         private int _currentLevel = _startLevel;
 
         private void Awake()
@@ -40,6 +42,7 @@ namespace WiresGame
             _restartPanel.ExitButton.onClick.RemoveListener(Exit);
 
             _elementsConnector.Finished -= NextLevel;
+
             _timer.TickEnded -= GameOver;
         }
 
@@ -54,7 +57,7 @@ namespace WiresGame
             StartLevel(_currentLevel);
         }
 
-        public void StartLevel(int level)
+        private void StartLevel(int level)
         {
             InitTimer(level);
             FillBoards();
@@ -64,7 +67,10 @@ namespace WiresGame
         private void StartGame()
         {
             ToglePanels(true);
+
+            _playerStats = new PlayerStats(_elementsConnector);
             _currentLevel = _startLevel;
+
             StartLevel(_currentLevel);
         }
 
@@ -100,6 +106,7 @@ namespace WiresGame
             _timer = new Timer();
             _timer.TickEnded += GameOver;
             _timeViewer.Init(_timer);
+            _scoreViewer.Init(_playerStats);
             StartCoroutine(_timer.StartCountdown(_difficultyCalculator.CalculateLevelTime(level)));
         }
 

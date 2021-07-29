@@ -4,8 +4,7 @@ namespace WiresGame
 {
     public class DifficultyCalculator
     {
-        private int _currentLevel = 0;
-        private float _minTimeValue = 10;
+        private int _minTimeValue = 10;
         private float _initTimeValue = 30;
         private int _timeCountFactor = 3;
         private int _elementsCountFactor = 1;
@@ -23,7 +22,12 @@ namespace WiresGame
             if (currentLevel < 0)
                 throw new ArgumentOutOfRangeException();
 
-            return (int)_initTimeValue - _timeCountFactor * currentLevel;
+            var currentTime = (int)_initTimeValue - _timeCountFactor * currentLevel;
+
+            if (currentTime > _minTimeValue)
+                return currentTime;
+            else
+                return _minTimeValue;
         }
     }
 }

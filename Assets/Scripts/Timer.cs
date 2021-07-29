@@ -2,38 +2,42 @@
 using System.Collections;
 using UnityEngine;
 
-public class Timer
+namespace WiresGame
 {
-    private const float _oneSecond = 1;
 
-    private int _currentTime;
-    private bool _isTicking;
-
-    public event Action<int> TimeTicked;
-    public event Action TickEnded;
-
-    public IEnumerator StartCountdown(int time)
+    public class Timer : INeedViewer<int>
     {
-        _currentTime = time;
-        _isTicking = true;
-        while (_isTicking)
+        private const float _oneSecond = 1;
+
+        private int _currentTime;
+        private bool _isTicking;
+
+        public event Action<int> NeedViewed;
+        public event Action TickEnded;
+
+        public IEnumerator StartCountdown(int time)
         {
-            TimeTicked?.Invoke(_currentTime);
-            if (_currentTime == 0)
-                StopTick();
+            _currentTime = time;
+            _isTicking = true;
+            while (_isTicking)
+            {
+                NeedViewed?.Invoke(_currentTime);
+                if (_currentTime == 0)
+                    StopTick();
 
-            yield return new WaitForSeconds(_oneSecond);
+                yield return new WaitForSeconds(_oneSecond);
 
-            _currentTime--;
+                _currentTime--;
+            }
         }
-    }
 
-    public void StopTick()
-    {
-        if (_isTicking == true)
+        public void StopTick()
         {
-            _isTicking = false;
-            TickEnded?.Invoke();
+            if (_isTicking == true)
+            {
+                _isTicking = false;
+                TickEnded?.Invoke();
+            }
         }
     }
 }
