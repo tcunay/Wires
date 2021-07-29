@@ -592,7 +592,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 18312533768247379, guid: 79d3d6f34c2a238418e8b8c24ad8bf32, type: 3}
       propertyPath: m_Name
-      value: Elements Board
+      value: Elements Board Left
       objectReference: {fileID: 0}
     - target: {fileID: 1777349656459176299, guid: 79d3d6f34c2a238418e8b8c24ad8bf32, type: 3}
       propertyPath: m_RaycastTarget
@@ -800,7 +800,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 18312533768247379, guid: 79d3d6f34c2a238418e8b8c24ad8bf32, type: 3}
       propertyPath: m_Name
-      value: Elements Board (1)
+      value: Elements Board Right
       objectReference: {fileID: 0}
     - target: {fileID: 9100539776323573463, guid: 79d3d6f34c2a238418e8b8c24ad8bf32, type: 3}
       propertyPath: m_Pivot.x
