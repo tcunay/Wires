@@ -85,6 +85,7 @@ namespace WiresGame.Elements
             }
 
             _elements = new List<Element>();
+            _childControlHeightHandler = new ChildControlHeightHandler(_verticalLayoutGroup);
             _conectedElementCount = 0;
         }
     }

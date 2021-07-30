@@ -78,7 +78,7 @@ namespace WiresGame
         {
             StopLevel();
             ToglePanels(false);
-            _menuPanel.SaveProgress(_playerStats.StatsData);
+            _menuPanel.SetScore(_playerStats.StatsData.Score);
         }
 
         private void StopLevel()

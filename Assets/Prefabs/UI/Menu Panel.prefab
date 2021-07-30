@@ -1142,6 +1142,7 @@ GameObject:
   - component: {fileID: 6527590445519935343}
   - component: {fileID: 6540589727417353175}
   - component: {fileID: 5628930372008148958}
+  - component: {fileID: 3677144029007683903}
   m_Layer: 5
   m_Name: Menu Panel
   m_TagString: Untagged
@@ -1225,6 +1226,21 @@ MonoBehaviour:
   _exit: {fileID: 861231066545122944}
   _nameInputField: {fileID: 874762897108179911}
   _topList: {fileID: 7487638653161496413}
+--- !u!114 &3677144029007683903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419401823894990161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd9d938c19fac0409fedd474c8ce468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _template: {fileID: 5886304169356804907, guid: 29d2e5b9ce0bd2f4fb1a978da2cc096d, type: 3}
+  _createParent: {fileID: 2538068147247684412}
+  _topCount: 10
 --- !u!1 &9109908878609626085
 GameObject:
   m_ObjectHideFlags: 0

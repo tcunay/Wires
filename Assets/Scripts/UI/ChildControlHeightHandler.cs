@@ -12,6 +12,7 @@ namespace WiresGame.UI
         {
             _verticalLayoutGroup = verticalLayoutGroup;
             _rectTransform = (RectTransform)_verticalLayoutGroup.transform;
+            SetChildControlHeight(false);
         }
 
         public void TryEnableChildControlHeight()

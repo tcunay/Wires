@@ -4,9 +4,11 @@ using TMPro;
 using WiresGame.Player;
 using WiresGame.SaveSystems;
 using System.Collections.Generic;
+using WiresGame.TopLists;
 
 namespace WiresGame.UI
 {
+    [RequireComponent(typeof(TopListCreator))]
     public class MenuPanel : MonoBehaviour
     {
         [SerializeField] private Button _restart;
@@ -14,11 +16,16 @@ namespace WiresGame.UI
         [SerializeField] private TMP_InputField _nameInputField;
         [SerializeField] private GameObject _topList;
 
-        private ISaveSystem _saveSystem;
-        private SaveData _saveData;
+        private TopListCreator _topListCreator;
+        private ProgressSaver _progressSaver = new ProgressSaver();
 
         public Button RestartButton => _restart;
         public Button ExitButton => _exit;
+
+        private void Awake()
+        {
+            _topListCreator = GetComponent<TopListCreator>();
+        }
 
         private void OnEnable()
         {
@@ -29,31 +36,33 @@ namespace WiresGame.UI
         private void OnDisable()
         {
             _topList.SetActive(false);
+            _nameInputField.onSubmit.RemoveListener(InpultFieldOnSelect);
         }
 
         public void SetActive(bool isActive)
         {
             gameObject.SetActive(isActive);
+            if (isActive == true)
+                ActiveTopList();
         }
 
-        public void SaveProgress(PlayerStatsData statsData)
+        public void SetScore(int score)
         {
-            _saveData = new SaveData();
-            _saveSystem = new BinarySaveSystem();
-            _saveData.PlayerStatsDatas.Add(statsData);
-            _saveSystem.Save(_saveData);
+            _progressSaver.StatsData.Score = score;
+
         }
 
         private void InpultFieldOnSelect(string text)
         {
+            _progressSaver.StatsData.Name = text;
+            _progressSaver.Save();
+            ActiveTopList();
             _nameInputField.text = string.Empty;
         }
 
         private void ActiveTopList()
         {
-
+            _topListCreator.Create(_progressSaver.GetTopList());
         }
-
-
     }
 }
