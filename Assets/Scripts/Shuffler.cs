@@ -9,9 +9,6 @@ namespace WiresGame
 
         public IReadOnlyList<T> CreateNewShuffleList(IReadOnlyList<T> sourceItems, int count)
         {
-            //if (count > sourceItems.Count)
-            //    throw new ArgumentOutOfRangeException();
-
             CreateNewList(sourceItems, count, out List<T> newList);
 
             return Shuffle(newList);

@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using WiresGame.Player;
 using WiresGame.SaveSystems;
-using System.Collections.Generic;
 using WiresGame.TopLists;
 
 namespace WiresGame.UI

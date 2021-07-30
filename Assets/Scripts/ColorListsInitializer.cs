@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using WiresGame.Libraries;
+using Random = UnityEngine.Random;
 
 namespace WiresGame
 {
@@ -23,7 +24,7 @@ namespace WiresGame
 
             for (int i = 0; i < forOneListCount - _colorsLibrary.Characteristics.Count; i++)
             {
-                colors.Add(UnityEngine.Random.ColorHSV(0, 1));
+                colors.Add(Random.ColorHSV(0, 1));
             }
 
             for (int i = 0; i < listsCount; i++)

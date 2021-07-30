@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace WiresGame
 {
-
     public class Timer : INeedViewer<int>
     {
         private const float _oneSecond = 1;

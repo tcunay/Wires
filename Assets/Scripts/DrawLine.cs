@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DrawLine : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DrawLine : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private Canvas _canvas;
@@ -20,11 +18,6 @@ public class DrawLine : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         _endPoint = Camera.main.ScreenToWorldPoint(eventData.position);
         Render();
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        
     }
 
     private void Render()

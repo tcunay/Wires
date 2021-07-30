@@ -1,7 +1,6 @@
 using UnityEngine;
 using WiresGame.UI;
 using WiresGame.Player;
-using TMPro;
 
 namespace WiresGame
 {

@@ -13,7 +13,6 @@ namespace WiresGame.Elements
     {
         private List<Element> _elements = new List<Element>();
         private VerticalLayoutGroup _verticalLayoutGroup;
-        private RectTransform _rectTransform;
         private ChildControlHeightHandler _childControlHeightHandler;
         private int _conectedElementCount;
 
@@ -25,7 +24,6 @@ namespace WiresGame.Elements
         private void Awake()
         {
             _verticalLayoutGroup = GetComponent<VerticalLayoutGroup>();
-            _rectTransform = GetComponent<RectTransform>();
         }
 
         private void OnEnable()
